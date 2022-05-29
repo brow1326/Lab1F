@@ -45,10 +45,14 @@ namespace CST8219
 
 
 
-
+using namespace CST8219;
 
 int main(int argc, char** argv)
 {
-	cout << "Hello World!" << endl;
+	Vehicle myVehicle();
+	cout << "I made a vehicle!" << endl;
+
+
+
 	return 0;
 }
