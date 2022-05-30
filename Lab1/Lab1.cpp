@@ -3,6 +3,7 @@
 
 #include "Lab1.h"
 #include <iostream>
+#include <limits>
 
 using namespace std;
 
@@ -19,24 +20,25 @@ namespace CST8219
 		{
 			numWheels = w;
 			numDoors = d;
-			cout << "In constructor with 2 parameters" << endl;
+			
 		}
 
 		Vehicle(int w)
 		{
-			Vehicle(w, 4);
-			cout << "In constructor with 1 parameters, wheels = " << w << endl;
+			Vehicle(w, 2);
+			
 		}
 
 		Vehicle()
 		{
 			Vehicle(4);
-			cout << "In constructor with 0 parameters" << endl;
+			
 		}
 
 		Vehicle::~Vehicle() 
-		{ 
-			cout << "In destructor" << endl;
+		{
+			
+			cout << "Destroyed" << endl;
 		}
 	};
 }
@@ -49,10 +51,67 @@ using namespace CST8219;
 
 int main(int argc, char** argv)
 {
-	Vehicle myVehicle(4, 2);
-	
+
+	Vehicle veh1;
+	Vehicle veh2(4);
+	Vehicle veh3(4, 2);
 
 
+	Vehicle *pVehicle;
 
+
+	int w, d;
+	char select;
+	do
+	{
+		while (1)
+		{
+			cout << "Enter number of wheels: ";
+			cin >> w;
+
+			if (cin.fail() || w < 0)
+			{
+				cin.clear();
+				cin.ignore(numeric_limits<streamsize>::max(), '\n');
+				cout << ">Not a valid number." << endl << endl;
+			}
+
+			else
+			{
+				break;
+			}
+		}
+
+		while (1)
+		{
+			cout << "Enter number of doors: ";
+			cin >> d;
+
+			if (cin.fail() || d < 0)
+			{
+				cin.clear();
+				cin.ignore(numeric_limits<streamsize>::max(), '\n');
+				cout << ">Not a valid number." << endl << endl;
+			}
+
+			else
+			{
+				break;
+			}
+		}
+
+		/* create the vehicle*/
+		pVehicle = new Vehicle(w, d);
+
+
+		cout << "Enter 'q' to quit: ";
+		cin >> select;
+
+
+	} while (select != 'q');
+
+
+	delete pVehicle;
 	return 0;
+	
 }
